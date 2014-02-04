@@ -13,6 +13,10 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('UserTableSeeder');
 		$this->command->info('Users Seeded');
+		$this->call('ThreadsTableSeeder');
+		$this->command->info('Threads Seeded');
+		$this->call('PostsTableSeeder');
+		$this->command->info('Posts Seeded');
 	}
 
 }
