@@ -78,7 +78,7 @@
 					@else
 						{{-- Authentication Navigation --}}
 						<li>
-							<a href="#">
+							<a href="#" data-toggle="modal" data-target="#login-modal">
 								Login
 							</a>
 						</li>
