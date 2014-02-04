@@ -29,4 +29,8 @@ Route::get('auth/logout', array(
 	'uses'	=>	'AuthenticationController@getLogout'
 ));
 
+/**
+ * @link thread/*
+ * Thread resource
+ */
 Route::resource('thread', 'ThreadController');
