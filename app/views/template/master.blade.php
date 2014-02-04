@@ -38,7 +38,7 @@
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					@if(!Sentry::check())
+					@if(Sentry::check())
 						{{-- User Settings --}}
 						<li>
 							<a
