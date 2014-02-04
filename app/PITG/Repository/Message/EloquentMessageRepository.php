@@ -1,21 +1,24 @@
-<?php
+<?php namespace PITG\Repository\Message;
 
-class EloquentMessageRepository implements MessageRepositoryInterface {
+use PITG\Repository\EloquentBaseRepository;
+use PITG\Repository\Message\MessageRepositoryInterface;
+
+class EloquentMessageRepository extends EloquentBaseRepository  implements MessageRepositoryInterface {
 	
 	/**
 	 * Eloquent model
 	 *
 	 * @var Illuminate\Database\Eloquent\Model
 	 */
-	protected $model;
+	protected $message;
 
 	/**
 	 * Embed model to instance
 	 *
 	 * @return 	void
 	 */
-	public function __construct($model = null)
+	public function __construct($message = null)
 	{
-		$this->model = $model;
+		$this->message = $message;
 	}
 }

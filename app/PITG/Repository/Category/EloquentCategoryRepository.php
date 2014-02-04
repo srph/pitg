@@ -1,6 +1,9 @@
-<?php
+<?php namespace PITG\Repository\Category;
 
-class EloquentCategoryRepository implements CategoryRepositoryInterface {
+use PITG\Repository\EloquentBaseRepository;
+use PITG\Repository\Category\CategoryRepositoryInterface;
+
+class EloquentCategoryRepository extends EloquentBaseRepository implements CategoryRepositoryInterface {
 	
 	/**
 	 * Eloquent model

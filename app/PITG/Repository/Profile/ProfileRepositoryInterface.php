@@ -1,5 +1,3 @@
 <?php namespace PITG\Repository\Profile;
 
-interface ProfileRepositoryInterface {
-	
-}
+interface ProfileRepositoryInterface {}

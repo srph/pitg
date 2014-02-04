@@ -1,21 +1,24 @@
-<?php
+<?php namespace PITG\Repository\Profile;
 
-class EloquentProfileRepository implements ProfileRepositoryInterface {
+use PITG\Repository\EloquentBaseRepository;
+use PITG\Repository\Profile\ProfileRepositoryInterface;
+
+class EloquentProfileRepository extends EloquentBaseRepository  implements ProfileRepositoryInterface {
 
 	/**
 	 * Eloquent model
 	 *
 	 * @var Illuminate\Database\Eloquent\Model
 	 */
-	protected $model;
+	protected $profile;
 
 	/**
 	 * Embed model to instance
 	 *
 	 * @return 	void
 	 */
-	public function __construct($model = null)
+	public function __construct($profile = null)
 	{
-		$this->model = $model;
+		$this->profile = $profile;
 	}
 }

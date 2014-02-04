@@ -1,4 +1,7 @@
-<?php
+<?php namespace PITG\Repository\User;
+
+use PITG\Repository\EloquentBaseRepository;
+use PITG\Repository\User\UserRepositoryInterface;
 
 class EloquentUserRepository implements ThreadRepositoryInterface {
 
@@ -7,15 +10,15 @@ class EloquentUserRepository implements ThreadRepositoryInterface {
 	 *
 	 * @var Illuminate\Database\Eloquent\Model
 	 */
-	protected $model;
+	protected $user;
 
 	/**
 	 * Embed model to instance
 	 *
 	 * @return 	void
 	 */
-	public function __construct($model = null)
+	public function __construct($user = null)
 	{
-		$this->model = $model;
+		$this->user = $user;
 	}
 }

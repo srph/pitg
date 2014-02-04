@@ -1,4 +1,4 @@
-<?php
+<?php namespace PITG\Repository;
 
 abstract class EloquentBaseRepository {
 	/**

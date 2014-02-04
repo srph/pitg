@@ -1,8 +1,9 @@
 <?php namespace PITG\Repository\Thread;
 
+use PITG\Repository\EloquentBaseRepository;
 use PITG\Repository\Thread\ThreadRepositoryInterface;
 
-class EloquentThreadRepository implements ThreadRepositoryInterface {
+class EloquentThreadRepository extends EloquentBaseRepository implements ThreadRepositoryInterface {
 
 	/**
 	 * Eloquent model

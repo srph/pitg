@@ -1,9 +1,3 @@
 <?php namespace PITG\Repository\User;
 
-interface UserRepositoryInterface {
-
-	/**
-	 *
-	 *
-	 */
-}
+interface UserRepositoryInterface {}

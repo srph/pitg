@@ -1,21 +1,24 @@
-<?php
+<?php namespace PITG\Repository\Post;
 
-class EloquentPostRepository implements PostRepositoryInterface {
+use PITG\Repository\EloquentBaseRepository;
+use PITG\Repository\Post\PostRepositoryInterface;
+
+class EloquentPostRepository extends EloquentBaseRepository implements PostRepositoryInterface {
 	
 	/**
 	 * Eloquent model
 	 *
 	 * @var Illuminate\Database\Eloquent\Model
 	 */
-	protected $model;
+	protected $post;
 
 	/**
 	 * Embed model to instance
 	 *
 	 * @return 	void
 	 */
-	public function __construct($model = null)
+	public function __construct($post = null)
 	{
-		$this->model = $model;
+		$this->post = $post;
 	}
 }
