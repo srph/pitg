@@ -20,4 +20,10 @@ class Thread extends Eloquent {
 		'body'
 	);
 	
+	/**
+	 * Allow model to interact with timestamps
+	 *
+	 * @access 	public
+	 */
+	public $timestamps = true;
 }

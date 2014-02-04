@@ -19,4 +19,11 @@ class Post extends Eloquent {
 		'user_id',
 		'body'
 	);
+
+	/**
+	 * Allow model to interact with timestamps
+	 *
+	 * @access 	public
+	 */
+	public $timestamps = true;
 }
