@@ -15,4 +15,18 @@
  * @link /
  * Index
  */
-Route::get('/', array('as' => 'home', 'uses' => 'HomeController@getIndex'));
+Route::get('/', array(
+	'as'	=> 'home',
+	'uses'	=> 'HomeController@getIndex'
+));
+
+/**
+ * @link auth/logout
+ * Logout route
+ */
+Route::get('auth/logout', array(
+	'as'	=>	'logout',
+	'uses'	=>	'AuthenticationController@getLogout'
+));
+
+Route::resource('thread', 'ThreadController');
