@@ -1,6 +1,6 @@
 <?php
 
-class UserDatabaseSeeder extends Seeder {
+class UsersTableSeeder extends Seeder {
 
 	public function run()
 	{
@@ -13,8 +13,6 @@ class UserDatabaseSeeder extends Seeder {
 				'password'		=>		'1234',
 				'first_name'	=>		'Yolo',
 				'last_name'		=>		'Swagity',
-				'created_at'	=>		new DateTime,
-				'updated_at'	=>		new DateTime
 			),
 
 			array(
@@ -23,8 +21,6 @@ class UserDatabaseSeeder extends Seeder {
 				'password'		=>		'1234',
 				'first_name'	=>		'Swaggs Be',
 				'last_name'		=>		'Yolowing',
-				'created_at'	=>		new DateTime,
-				'updated_at'	=>		new DateTime
 			),
 
 			array(
@@ -33,8 +29,6 @@ class UserDatabaseSeeder extends Seeder {
 				'password'		=>		'1234',
 				'first_name'	=>		'Nature',
 				'last_name'		=>		'Swag',
-				'created_at'	=>		new DateTime,
-				'updated_at'	=>		new DateTime
 			),
 
 			array(
@@ -43,11 +37,12 @@ class UserDatabaseSeeder extends Seeder {
 				'password'		=>		'1234',
 				'first_name'	=>		'Justin',
 				'last_name'		=>		'Swagity',
-				'created_at'	=>		new DateTime,
-				'updated_at'	=>		new DateTime
 			),
 		);
 
-		Sentry::getUserProvider()->create($users);
+		foreach($users as $user) {
+			Sentry::getUserProvider()->create($user);
+		}
+
 	}
 }
