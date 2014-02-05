@@ -24,4 +24,12 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 		$this->thread = $thread;
 	}
 
+	public function byId($id)
+	{
+		$thread = $this->model
+			->where('id', '=', $id);
+
+		return $thread->first();
+	}
+
 }
