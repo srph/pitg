@@ -9,6 +9,7 @@ use PITG\Repository\Category\EloquentCategoryRepository;
 use PITG\Repository\Thread\EloquentThreadRepository;
 use PITG\Repository\Post\EloquentPostRepository;
 use PITG\Repository\Message\EloquentMessageRepository;
+use PITG\Repository\Hits\EloquentHitsRepository;
 
 class RepositoryServiceProvider extends ServiceProvider {
 
@@ -44,6 +45,11 @@ class RepositoryServiceProvider extends ServiceProvider {
 		/* Category */
 		$app->bind('PITG\Repository\Category\CategoryRepositoryInterface', function() {
 			return new EloquentCategoryRepository(new Category);
+		});
+
+		/* Hits */
+		$app->bind('PITG\Repository\Hits\HitsRepositoryInterface', function() {
+			return new EloquentHitsRepository(new Hits);
 		});
 	}
 }
