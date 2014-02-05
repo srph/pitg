@@ -22,9 +22,4 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 		$this->model = $model;
 	}
 
-	public function all()
-	{
-		return Thread::all();
-	}
-
 }
