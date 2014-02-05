@@ -72,7 +72,12 @@ class ThreadController extends BaseController {
 	 */
 	public function show($id)
 	{
-		return View::make('thread.show');
+		// Fetch the thread of the requested id
+		$thread = $this->thread->where('id', '=', $id);
+
+		return View::make('thread.show')
+			->with('thread', $thread)
+			->with('posts', $thread->posts);
 	}
 
 	/**
