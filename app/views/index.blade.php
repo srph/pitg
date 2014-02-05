@@ -3,6 +3,9 @@
 @section('title') Home @stop
 
 @section('content')
+	{{-- Alert --}}
+	@include('template/modules.alert')
+	@if(Session::has('msg')) {{ Session::get('msg') }} @endif
 	<div class="row">
 
 		{{-- Thread Listing --}}
@@ -26,38 +29,43 @@
 			{{-- Content --}}
 			<div class="tab-content">
 				<div class="tab-pane active" id="recent">
-					<div class="row thread">
-						{{-- Basic Thread Stats --}}
-						<div class="col-md-1">
-							<h4 class="text-center">
-								0 <br />
-								<small> votes </small>
-							</h4>
+
+					{{-- Threads List --}}
+					@foreach($threads as $thread)
+						<div class="row thread">
+							{{-- Basic Thread Stats --}}
+							<div class="col-md-1">
+								<h4 class="text-center">
+									0 <br />
+									<small> votes </small>
+								</h4>
+							</div>
+
+							<div class="col-md-1">
+								<h4 class="text-center">
+									{{ count($thread->posts) }} <br />
+									<small> posts </small>
+								</h4>
+							</div>
+
+							<div class="col-md-1">
+								<h4 class="text-center">
+									{{ $thread->hits }} <br />
+									<small> hits </small>
+								</h4>
+							</div>
+
+							<div class="col-md-9">
+								<h4> {{ $thread->title }} </h4>
+							</div>
 						</div>
+						<hr>
+					@endforeach
 
-						<div class="col-md-1">
-							<h4 class="text-center">
-								0 <br />
-								<small> posts </small>
-							</h4>
-						</div>
+				</div>{{-- /.tab-pane --}}
+			</div>{{-- /.tab-content --}}
 
-						<div class="col-md-1">
-							<h4 class="text-center">
-								1 <br />
-								<small> hits </small>
-							</h4>
-						</div>
+		</div>{{-- /.col-md-9 --}}
 
-						<div class="col-md-9">
-							<h4> Yolowing cuz I too yolo swag holy sheit. How do I swag? </h4>
-						</div>
-					</div>
-					<hr>
-				</div>
-			</div>
-
-		</div>
-
-	</div>
+	</div>{{-- /.row --}}
 @stop
