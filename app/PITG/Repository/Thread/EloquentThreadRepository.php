@@ -2,6 +2,7 @@
 
 use PITG\Repository\EloquentBaseRepository;
 use PITG\Repository\Thread\ThreadRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
 
 class EloquentThreadRepository extends EloquentBaseRepository implements ThreadRepositoryInterface {
 
@@ -10,16 +11,17 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 	 *
 	 * @var Illuminate\Database\Eloquent\Model
 	 */
-	protected $model;
+	protected $thread;
 
 	/**
 	 * Embed model to instance
 	 *
 	 * @return 	void
 	 */
-	public function __construct($model = null)
+	public function __construct(Model $thread)
 	{
-		$this->model = $model;
+		parent::__construct($thread);
+		$this->thread = $thread;
 	}
 
 }

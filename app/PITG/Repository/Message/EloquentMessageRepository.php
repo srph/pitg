@@ -2,6 +2,7 @@
 
 use PITG\Repository\EloquentBaseRepository;
 use PITG\Repository\Message\MessageRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
 
 class EloquentMessageRepository extends EloquentBaseRepository  implements MessageRepositoryInterface {
 	
@@ -17,8 +18,9 @@ class EloquentMessageRepository extends EloquentBaseRepository  implements Messa
 	 *
 	 * @return 	void
 	 */
-	public function __construct($message = null)
+	public function __construct(Model $message)
 	{
+		parent::__construct($message);
 		$this->message = $message;
 	}
 }

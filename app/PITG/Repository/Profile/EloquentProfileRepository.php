@@ -2,6 +2,7 @@
 
 use PITG\Repository\EloquentBaseRepository;
 use PITG\Repository\Profile\ProfileRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
 
 class EloquentProfileRepository extends EloquentBaseRepository  implements ProfileRepositoryInterface {
 
@@ -17,8 +18,9 @@ class EloquentProfileRepository extends EloquentBaseRepository  implements Profi
 	 *
 	 * @return 	void
 	 */
-	public function __construct($profile = null)
+	public function __construct(Model $profile)
 	{
+		parent::__construct($profile);
 		$this->profile = $profile;
 	}
 }

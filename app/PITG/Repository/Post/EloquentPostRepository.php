@@ -2,6 +2,7 @@
 
 use PITG\Repository\EloquentBaseRepository;
 use PITG\Repository\Post\PostRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
 
 class EloquentPostRepository extends EloquentBaseRepository implements PostRepositoryInterface {
 	
@@ -17,8 +18,9 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
 	 *
 	 * @return 	void
 	 */
-	public function __construct($post = null)
+	public function __construct(Model $post)
 	{
+		parent::__construct($post);
 		$this->post = $post;
 	}
 }
