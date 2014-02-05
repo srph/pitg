@@ -3,6 +3,7 @@
 <head>
 	<title> PITG :: @yield('title') </title>
 	<meta charset="utf-8">
+	{{ HTML::style('css/fonts.css') }}
 	{{ HTML::style('css/bootstrap.min.css') }}
 	{{ HTML::style('css/stylesheet.css') }}
 </head>
@@ -68,7 +69,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="{{ URL::route('logout') }}">
+									<a href="{{ URL::to('auth/logout') }}">
 										<span class="glyphicon glyphicon-remove"></span>
 										Logout
 									</a>
