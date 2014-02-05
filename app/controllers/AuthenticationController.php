@@ -12,10 +12,11 @@ class AuthenticationController extends BaseController {
 		try {
 			$user = array(
 				'email'			=>	Input::get('email'),
-				'password'		=>	Input::get('password');
+				'password'		=>	Input::get('password')
 			);
 
-			Sentry::authenticate($user, Input::get('remember'));
+			// Implement remember me
+			Sentry::authenticate($user, false);
 		} catch (Cartalyst\Sentry\Users\LoginRequiredException $e) {
 			$msg = 'Login field is required.';
 		} catch (Cartalyst\Sentry\Users\PasswordRequiredException $e) {
@@ -32,6 +33,7 @@ class AuthenticationController extends BaseController {
 		    $msg = 'User is banned.';
 		}
 
+		Session::flash('success', 'You have been logged in!');
 		return Redirect::route('home');
 	}
 
@@ -42,9 +44,11 @@ class AuthenticationController extends BaseController {
 	 */
 	public function getLogout()
 	{
-		if(Sentry::)
-		Sentry::logout();
-		Session::flash('success', 'You have been logged out');
-		return Redirect::to('home');
+		if(Sentry::check()) {
+			Sentry::logout();
+			Session::flash('success', 'You have been logged out');
+		}
+		
+		return Redirect::route('home');
 	}
 }
