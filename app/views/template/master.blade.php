@@ -32,7 +32,7 @@
 			<div class="collapse navbar-collapse" id="main-navigation">
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="#">
+						<a href="{{ URL::route('home') }}">
 							Home
 						</a>
 					</li>
