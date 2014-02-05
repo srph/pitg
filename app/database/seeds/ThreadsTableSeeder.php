@@ -15,6 +15,7 @@ class ThreadsTableSeeder extends Seeder {
 				'title'			=>	'Yolow be swagging?',
 				'body'			=>	'Yolo forevs cuz I too yolo. Can u yoloing cuz I has yolo swag of all. ' .
 									'They be like imma yolo cuz i swag ok.',
+				'hits'			=>	72,
 				'created_at'	=>	new DateTime,
 				'updated_at'	=>	new DateTime
 			),
@@ -25,6 +26,7 @@ class ThreadsTableSeeder extends Seeder {
 				'title'			=>	'Yolow be swagging?',
 				'body'			=>	'Yolo forevs cuz I too yolo. Can u yoloing cuz I has yolo swag of all. ' .
 									'They be like imma yolo cuz i swag ok.',
+				'hits'			=>	250,
 				'created_at'	=>	new DateTime,
 				'updated_at'	=>	new DateTime
 			),
@@ -35,6 +37,7 @@ class ThreadsTableSeeder extends Seeder {
 				'title'			=>	'Yolow be swagging?',
 				'body'			=>	'Yolo forevs cuz I too yolo. Can u yoloing cuz I has yolo swag of all. ' .
 									'They be like imma yolo cuz i swag ok.',
+				'hits'			=>	69,
 				'created_at'	=>	new DateTime,
 				'updated_at'	=>	new DateTime
 			),
@@ -45,6 +48,7 @@ class ThreadsTableSeeder extends Seeder {
 				'title'			=>	'Yolow be swagging?',
 				'body'			=>	'Yolo forevs cuz I too yolo. Can u yoloing cuz I has yolo swag of all. ' .
 									'They be like imma yolo cuz i swag ok.',
+				'hits'			=>	50,
 				'created_at'	=>	new DateTime,
 				'updated_at'	=>	new DateTime
 			),
