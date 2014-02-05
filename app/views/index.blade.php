@@ -57,7 +57,7 @@
 
 							<div class="col-md-9">
 								<h4>
-									<a href="{{ URL::route('thread.show', $thread->id') }}">
+									<a href="{{ URL::route('thread.show', $thread->id) }}">
 										{{ $thread->title }}
 									</a>
 								</h4>
