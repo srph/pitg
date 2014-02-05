@@ -5,7 +5,7 @@
 @section('content')
 	{{-- Alert --}}
 	@include('template/modules.alert')
-	@if(Session::has('msg')) {{ Session::get('msg') }} @endif
+
 	<div class="row">
 
 		{{-- Thread Listing --}}
@@ -56,7 +56,11 @@
 							</div>
 
 							<div class="col-md-9">
-								<h4> {{ $thread->title }} </h4>
+								<h4>
+									<a href="{{ URL::route('thread.show', $thread->id') }}">
+										{{ $thread->title }}
+									</a>
+								</h4>
 							</div>
 						</div>
 						<hr>
