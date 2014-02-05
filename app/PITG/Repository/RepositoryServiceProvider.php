@@ -3,12 +3,12 @@
 use User;
 use Thread;
 use Illuminate\Support\ServiceProvider;
-use PITG\Repository\Thread\EloquentUserRepository;
-use PITG\Repository\Thread\EloquentProfileRepository;
-use PITG\Repository\Thread\EloquentCategoryRepository;
+use PITG\Repository\User\EloquentUserRepository;
+use PITG\Repository\Profile\EloquentProfileRepository;
+use PITG\Repository\Category\EloquentCategoryRepository;
 use PITG\Repository\Thread\EloquentThreadRepository;
-use PITG\Repository\Thread\EloquentPostRepository;
-use PITG\Repository\Thread\EloquentMessageRepository;
+use PITG\Repository\Post\EloquentPostRepository;
+use PITG\Repository\Message\EloquentMessageRepository;
 
 class RepositoryServiceProvider extends ServiceProvider {
 
