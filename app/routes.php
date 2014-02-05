@@ -21,16 +21,13 @@ Route::get('/', array(
 ));
 
 /**
- * @link auth/logout
- * Logout route
- */
-Route::get('auth/logout', array(
-	'as'	=>	'logout',
-	'uses'	=>	'AuthenticationController@getLogout'
-));
-
-/**
  * @link thread/*
  * Thread resource
  */
 Route::resource('thread', 'ThreadController');
+
+/**
+ * @link auth/*
+ * Auth controller
+ */
+Route::controller('auth', 'AuthenticationController');
