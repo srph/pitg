@@ -19,7 +19,7 @@
 			</div>
 
 			<div class="modal-body">
-				{{ Form::open() }}
+				{{ Form::open(array('action' => 'AuthenticationController@postLogin')) }}
 					{{ Form::token() }}
 
 					<div class="form-group">
