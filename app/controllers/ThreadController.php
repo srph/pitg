@@ -25,13 +25,9 @@ class ThreadController extends BaseController {
 	 *
 	 * @return 	void
 	 */
-	public function __construct(
-		ThreadRepositoryInterface $thread,
-		PostRepositoryInterface $post
-		)
+	public function __construct(ThreadRepositoryInterface $thread)
 	{
 		$this->thread = $thread;
-		$this->post = $post;
 	}
 
 	/**
@@ -73,7 +69,7 @@ class ThreadController extends BaseController {
 	public function show($id)
 	{
 		// Fetch the thread of the requested id
-		$thread = $this->thread->where('id', '=', $id);
+		$thread = $this->thread->byId($id);
 
 		return View::make('thread.show')
 			->with('thread', $thread)
