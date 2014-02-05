@@ -49,4 +49,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
+	/**
+	 * Define a hasMany relationship with the Thread model
+	 *
+	 * @return 	mixed
+	 */
+	public function threads()
+	{
+		return $this->hasMany('Thread');
+	}
+
+	/**
+	 * Define a hasMany relationship with the Post model
+	 *
+	 * @return 	mixed
+	 */
+	public function posts()
+	{
+		return $this->hasMany('Post');
+	}
+
 }

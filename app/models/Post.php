@@ -15,7 +15,7 @@ class Post extends Eloquent {
 	 * @access 	protected
 	 */
 	protected $fillable = array(
-		'thread_id'
+		'thread_id',
 		'user_id',
 		'body'
 	);
@@ -26,4 +26,24 @@ class Post extends Eloquent {
 	 * @access 	public
 	 */
 	public $timestamps = true;
+
+	/**
+	 * Define a belongsTo relationship with the User model
+	 *
+	 * @return 	mixed
+	 */
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	/**
+	 * Define a belongsTo relationship with the Thread model
+	 *
+	 * @return 	mixed
+	 */
+	public function thread()
+	{
+		return $this->belongsTo('Thread');
+	}
 }

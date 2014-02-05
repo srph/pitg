@@ -26,4 +26,24 @@ class Thread extends Eloquent {
 	 * @access 	public
 	 */
 	public $timestamps = true;
+
+	/**
+	 * Define a belongsTo relationship with the User model
+	 *
+	 * @return 	mixed
+	 */
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+	
+	/**
+	 * Define a belongsTo relationship with the Post model
+	 *
+	 * @return 	mixed
+	 */
+	public function posts()
+	{
+		return $this->hasMany('Post');
+	}
 }
