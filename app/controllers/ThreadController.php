@@ -71,6 +71,10 @@ class ThreadController extends BaseController {
 		// Fetch the thread of the requested id
 		$thread = $this->thread->byId($id);
 
+		if(!$thread) {
+			return App::abort('404');
+		}
+
 		return View::make('thread.show')
 			->with('thread', $thread)
 			->with('posts', $thread->posts);
