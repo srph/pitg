@@ -28,8 +28,8 @@
 
 			{{-- Content --}}
 			<div class="tab-content">
-				<div class="tab-pane active" id="recent">
 
+				<div class="tab-pane active" id="recent">
 					{{-- Threads List --}}
 					@foreach($recent as $thread)
 						<div class="row thread">
@@ -65,11 +65,9 @@
 						</div>
 						<hr>
 					@endforeach
-
 				</div>{{-- /.tab-pane --}}
 
-				<div class="tab-pane active" id="hot">
-
+				<div class="tab-pane" id="hot">
 					{{-- Threads List --}}
 					@foreach($hot as $thread)
 						<div class="row thread">
@@ -105,8 +103,8 @@
 						</div>
 						<hr>
 					@endforeach
-
 				</div>{{-- /.tab-pane --}}
+
 			</div>{{-- /.tab-content --}}
 
 		</div>{{-- /.col-md-9 --}}
