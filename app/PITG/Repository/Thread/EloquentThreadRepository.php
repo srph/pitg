@@ -46,7 +46,7 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 	 *
 	 * @param 	Thread 	$thread
 	 * @param 	string 	$client
-	 * @param 	User 	$user
+	 * @param 	User 	$user_id
 	 * @return 	boolean
 	 */
 	public function incrementHits($thread, $client, $user_id)

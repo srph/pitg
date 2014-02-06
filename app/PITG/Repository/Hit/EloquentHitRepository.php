@@ -31,7 +31,7 @@ class EloquentHitRepository extends EloquentBaseRepository implements HitReposit
 	 *
 	 * @param 	Thread 	$thread
 	 * @param 	string 	$client
-	 * @param 	User 	$user
+	 * @param 	User 	$user_id
 	 * @return 	boolean
 	 */
 	public function validate($thread = null, $client = null, $user_id = null)
