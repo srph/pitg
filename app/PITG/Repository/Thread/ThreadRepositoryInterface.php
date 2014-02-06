@@ -17,5 +17,5 @@ interface ThreadRepositoryInterface {
 	 * @param 	User 	$user_id
 	 * @return 	boolean
 	 */
-	public function incrementHits($thread, $client, $user_id)
+	public function incrementHits($thread, $client, $user_id);
 }
