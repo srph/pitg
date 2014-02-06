@@ -46,7 +46,8 @@ class HomeController extends BaseController {
 	public function getIndex()
 	{
 		return View::make('index')
-			->with('threads', $this->thread->all());
+			->with('hot', $this->thread->getHot())
+			->with('recent', $this->thread->getRecent());
 	}
 
 }
