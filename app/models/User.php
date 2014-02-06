@@ -69,4 +69,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasMany('Post');
 	}
 
+	/**
+	 * Define a hasMany relationship with the Hit model
+	 *
+	 * @return 	mixed
+	 */
+	public function hits()
+	{
+		return $this->hasMany('Hit');
+	}
+
 }

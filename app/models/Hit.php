@@ -1,13 +1,13 @@
 <?php
 
-class Thread extends Eloquent {
-
-	/**
+class Hit extends Eloquent {
+	
+		/**
 	 * Table used by the model
 	 *
 	 * @access 	protected
 	 */
-	protected $table = 'threads';
+	protected $table = 'hits';
 
 	/**
 	 * Columns fillable by the model
@@ -15,9 +15,9 @@ class Thread extends Eloquent {
 	 * @access 	protected
 	 */
 	protected $fillable = array(
-		'user_id',
-		'title',
-		'body'
+		'ip',
+		'thread_id'
+		'user_id'
 	);
 	
 	/**
@@ -36,24 +36,14 @@ class Thread extends Eloquent {
 	{
 		return $this->belongsTo('User');
 	}
-	
-	/**
-	 * Define a belongsTo relationship with the Post model
-	 *
-	 * @return 	mixed
-	 */
-	public function posts()
-	{
-		return $this->hasMany('Post');
-	}
 
 	/**
-	 * Define a hasMany relationship with the Hit model
+	 * Define a belongsTo relationship with the Thread model
 	 *
 	 * @return 	mixed
 	 */
-	public function hits()
+	public function thread()
 	{
-		return $this->hasMany('Hit');
+		return $this->belongsTo('Thread');
 	}
 }
