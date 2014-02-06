@@ -17,6 +17,7 @@ class Thread extends Eloquent {
 	protected $fillable = array(
 		'user_id',
 		'title',
+		'hits',
 		'body'
 	);
 	

@@ -1,10 +1,10 @@
 <?php namespace PITG\Repository\User;
 
+use Sentry;
 use PITG\Repository\EloquentBaseRepository;
 use PITG\Repository\User\UserRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
 
-class EloquentUserRepository implements ThreadRepositoryInterface {
+class EloquentUserRepository extends EloquentBaseRepository implements UserRepositoryInterface {
 
 	/**
 	 * Eloquent model
@@ -18,9 +18,29 @@ class EloquentUserRepository implements ThreadRepositoryInterface {
 	 *
 	 * @return 	void
 	 */
-	public function __construct(Model $user)
+	public function __construct(Sentry $user)
 	{
 		parent::__construct($user);
 		$this->user = $user;
+	}
+
+	/**
+	 * Checks if the user is logged in
+	 *
+	 * @return 	mixed
+	 */
+	public function check()
+	{
+		return Sentry::check();
+	}
+
+	/**
+	 * Grab the logged in user
+	 *
+	 * @return 	mixed
+	 */
+	public function getUser()
+	{
+		return Sentry::getUser();
 	}
 }

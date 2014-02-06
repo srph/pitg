@@ -1,7 +1,7 @@
 <?php
 
 use PITG\Repository\Thread\ThreadRepositoryInterface;
-use PITG\Repository\Post\PostRepositoryInterface;
+use PITG\Repository\User\UserRepositoryInterface;
 
 class ThreadController extends BaseController {
 
@@ -12,12 +12,14 @@ class ThreadController extends BaseController {
 	 */
 	protected $thread;
 
+
 	/**
-	 * Post repository
+	 * User repository
 	 *
-	 * @var \PITG\Repository\Post\PostRepositoryInterface
+	 * @var \PITG\Repository\User\UserRepositoryInterface
 	 */
-	protected $post;
+	protected $user;
+
 
 	/**
 	 * Initialize controller configurations,
@@ -25,9 +27,12 @@ class ThreadController extends BaseController {
 	 *
 	 * @return 	void
 	 */
-	public function __construct(ThreadRepositoryInterface $thread)
+	public function __construct(
+		ThreadRepositoryInterface $thread,
+		UserRepositoryInterface $user)
 	{
 		$this->thread = $thread;
+		$this->user = $user;
 	}
 
 	/**
@@ -71,8 +76,17 @@ class ThreadController extends BaseController {
 		// Fetch the thread of the requested id
 		$thread = $this->thread->byId($id);
 
+		// If thread does not exist, abort application
 		if(!$thread) {
 			return App::abort('404');
+		}
+
+		$user = $this->user;
+		// Grab the client' ip Increment hits
+		if($user->check()) {
+			$client = '\'' . Request::getClientIp() . '\'';
+			$user = $user->getUser();
+			$this->thread->incrementHits($id, $client, $user->id);
 		}
 
 		return View::make('thread.show')

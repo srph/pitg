@@ -15,8 +15,8 @@ class Hit extends Eloquent {
 	 * @access 	protected
 	 */
 	protected $fillable = array(
-		'ip',
-		'thread_id'
+		'ip_address',
+		'thread_id',
 		'user_id'
 	);
 	

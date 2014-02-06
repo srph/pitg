@@ -2,6 +2,7 @@
 
 use PITG\Repository\EloquentBaseRepository;
 use PITG\Repository\Thread\ThreadRepositoryInterface;
+use PITG\Repository\Hit\HitRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class EloquentThreadRepository extends EloquentBaseRepository implements ThreadRepositoryInterface {
@@ -18,10 +19,13 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 	 *
 	 * @return 	void
 	 */
-	public function __construct(Model $thread)
+	public function __construct(
+		Model $thread,
+		HitRepositoryInterface $hit)
 	{
 		parent::__construct($thread);
 		$this->thread = $thread;
+		$this->hit = $hit;
 	}
 
 	/**
@@ -35,6 +39,38 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 			->where('id', '=', $id);
 
 		return $thread->first();
+	}
+
+	/**
+	 * Increment thread's hits
+	 *
+	 * @param 	Thread 	$thread
+	 * @param 	string 	$client
+	 * @param 	User 	$user
+	 * @return 	boolean
+	 */
+	public function incrementHits($thread, $client, $user_id)
+	{
+		$thread = $this->byId($thread);
+		$thread_id = $thread->id;
+
+		$hit = $this->hit;
+		if($hit->validate($thread, $client, $user_id)) {
+			$client = @inet_pton($client);
+			$hit_logged = $hit->create(array(
+				'ip_address'=>	$client,
+				'thread_id'	=>	$thread_id,
+				'user_id'	=>	$user_id
+			));
+
+			$thread->hits++;
+
+			if($hit_logged && $this->model->save()) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }

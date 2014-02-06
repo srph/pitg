@@ -1,5 +1,6 @@
 <?php namespace PITG\Repository\Hit;
 
+use DateTime;
 use PITG\Repository\EloquentBaseRepository;
 use PITG\Repository\Hit\HitRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
@@ -22,40 +23,42 @@ class EloquentHitRepository extends EloquentBaseRepository implements HitReposit
 	public function __construct(Model $hit)
 	{
 		parent::__construct($hit);
-		$this->hits = $hit;
+		$this->hit = $hit;
 	}
 
-	public function validate($thread, $client = null, $user = null)
+	/**
+	 * Validate if the hit counts
+	 *
+	 * @param 	Thread 	$thread
+	 * @param 	string 	$client
+	 * @param 	User 	$user
+	 * @return 	boolean
+	 */
+	public function validate($thread = null, $client = null, $user_id = null)
 	{
-		if(!empty($client) && !empty($user)) {
+		if(!empty($client) && !empty($user_id)) {
 			// Grab the latest log from the client ip
+			$client = @inet_pton($client);
 			$hit = $this->model
-				->where('ip', '=', $client)
+				->where('thread_id', '=', $thread->id)
+				->where('ip_address', '=', $client)
+				->where('user_id', '=', $user_id)
 				->orderBy('id', 'desc')
 				->first();
 
-			$lastLog = new DateTime($hit->created_at);
-			$oneDay = $lastLog->modify('+1 day');
-
-			if(!empty($hit) || $lastLog > $oneDay) {
-				return true;
+			$valid = true;
+			if(!empty($hit)) {
+				$lastLog = new DateTime($hit->created_at);
+				$newLog = new DateTime(date('Y-m-d H:i:s'));
+				$interval = $lastLog->diff($newLog);
+				
+				if($interval->d < 1) {
+					$valid = false;
+				}
 			}
-		}
 
-		return false;
-	}
+			if($valid) return true;
 
-	public function increment($thread = null, $client = null, $user = null)
-	{
-		if($this->validate($thread, $client, $user)) {
-			$hit_logged = $this->model->create(array(
-				'ip'		=>	$client,
-				'user_id'	=>	$user->id
-			));
-
-			if($hit_logged) {
-				return true;
-			}
 		}
 
 		return false;

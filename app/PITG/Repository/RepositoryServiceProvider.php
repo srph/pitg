@@ -1,15 +1,18 @@
 <?php namespace PITG\Repository;
 
+use Sentry;
 use User;
+use Post;
 use Thread;
+use Hit;
 use Illuminate\Support\ServiceProvider;
+use PITG\Repository\Hit\EloquentHitRepository;
 use PITG\Repository\User\EloquentUserRepository;
 use PITG\Repository\Profile\EloquentProfileRepository;
 use PITG\Repository\Category\EloquentCategoryRepository;
 use PITG\Repository\Thread\EloquentThreadRepository;
 use PITG\Repository\Post\EloquentPostRepository;
 use PITG\Repository\Message\EloquentMessageRepository;
-use PITG\Repository\Hits\EloquentHitsRepository;
 
 class RepositoryServiceProvider extends ServiceProvider {
 
@@ -24,12 +27,15 @@ class RepositoryServiceProvider extends ServiceProvider {
 
 		/* Users */
 		$app->bind('PITG\Repository\User\UserRepositoryInterface', function() {
-			return new EloquentUserRepository(new User);
+			return new EloquentUserRepository(new Sentry);
 		});
 
 		/* Thread */
-		$app->bind('PITG\Repository\Thread\ThreadRepositoryInterface', function() {
-			return new EloquentThreadRepository(new Thread);
+		$app->bind('PITG\Repository\Thread\ThreadRepositoryInterface', function($app) {
+			return new EloquentThreadRepository(
+				new Thread,
+				$app->make('PITG\Repository\Hit\HitRepositoryInterface')
+			);
 		});
 
 		/* Post */
@@ -47,7 +53,7 @@ class RepositoryServiceProvider extends ServiceProvider {
 			return new EloquentCategoryRepository(new Category);
 		});
 
-		/* Hits */
+		/* Hit */
 		$app->bind('PITG\Repository\Hit\HitRepositoryInterface', function() {
 			return new EloquentHitRepository(new Hit);
 		});

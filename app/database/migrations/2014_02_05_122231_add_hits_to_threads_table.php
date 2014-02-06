@@ -13,7 +13,7 @@ class AddHitsToThreadsTable extends Migration {
 	public function up()
 	{
 		Schema::table('threads', function($table) {
-			$table->bigInteger('hits');
+			$table->integer('hits');
 		});
 	}
 
