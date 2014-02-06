@@ -48,8 +48,8 @@ class RepositoryServiceProvider extends ServiceProvider {
 		});
 
 		/* Hits */
-		$app->bind('PITG\Repository\Hits\HitsRepositoryInterface', function() {
-			return new EloquentHitsRepository(new Hits);
+		$app->bind('PITG\Repository\Hit\HitRepositoryInterface', function() {
+			return new EloquentHitRepository(new Hit);
 		});
 	}
 }

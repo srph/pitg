@@ -1,5 +1,7 @@
 <?php namespace PITG\Repository;
 
+use Illuminate\Database\Eloquent\Model;
+
 abstract class EloquentBaseRepository {
 	/**
 	 * Eloquent model
@@ -41,5 +43,21 @@ abstract class EloquentBaseRepository {
 		return ($model)
 			? true
 			: false;
+	}
+
+	/**
+	 * Update a resource of given model
+	 *
+	 * @param 	Model 		$model
+	 * @param 	array 		$input
+	 * @return 	boolean
+	 */
+	public function update($model, array $input)
+	{
+		$model->fill($input);
+		return $model->save();
+
+		// $this->model->fill($input);
+		// return $this->model->save();
 	}
 }
