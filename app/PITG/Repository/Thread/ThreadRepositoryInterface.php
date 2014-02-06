@@ -18,4 +18,19 @@ interface ThreadRepositoryInterface {
 	 * @return 	boolean
 	 */
 	public function incrementHits($thread, $client, $user_id);
+
+	/**
+	 * Fetch threads according to hits
+	 * and its date posted
+	 *
+	 * @return 	mixed
+	 */
+	public function getTrending();
+
+	/**
+	 * Fetch the latest threads
+	 *
+	 * @return 	mixed
+	 */
+	public function getLatest();
 }

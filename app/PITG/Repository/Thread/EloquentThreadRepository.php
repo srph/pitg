@@ -42,6 +42,36 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 	}
 
 	/**
+	 * Fetch threads according to hits
+	 * and its date posted
+	 *
+	 * @return 	mixed
+	 */
+	public function getTrending()
+	{
+		$thread = $this->thread
+			->orderBy('hits', 'asc')
+			->orderBy('id', 'desc')
+			->get();
+
+		return $thread;
+	}
+
+	/**
+	 * Fetch the latest threads
+	 *
+	 * @return 	mixed
+	 */
+	public function getLatest()
+	{
+		$thread = $this->$thread
+			->orderBy('id', 'desc')
+			->get();
+
+		return $thread;
+	}
+
+	/**
 	 * Increment thread's hits
 	 *
 	 * @param 	Thread 	$thread
