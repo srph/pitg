@@ -91,7 +91,8 @@ class ThreadController extends BaseController {
 
 		return View::make('thread.show')
 			->with('thread', $thread)
-			->with('posts', $thread->posts);
+			->with('posts', $thread->posts)
+			->with('user', $this->user);
 	}
 
 	/**

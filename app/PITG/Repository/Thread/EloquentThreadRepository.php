@@ -65,7 +65,7 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 
 			$thread->hits++;
 
-			if($hit_logged && $this->model->save()) {
+			if($hit_logged && $thread->save()) {
 				return true;
 			}
 		}
