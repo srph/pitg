@@ -25,12 +25,12 @@ interface ThreadRepositoryInterface {
 	 *
 	 * @return 	mixed
 	 */
-	public function getTrending();
+	public function getHot();
 
 	/**
 	 * Fetch the latest threads
 	 *
 	 * @return 	mixed
 	 */
-	public function getLatest();
+	public function getRecent();
 }

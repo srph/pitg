@@ -47,10 +47,11 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 	 *
 	 * @return 	mixed
 	 */
-	public function getTrending()
+	public function getHot()
 	{
+		// Add the frequency / number of posts too..
 		$thread = $this->thread
-			->orderBy('hits', 'asc')
+			->orderBy('hits', 'desc')
 			->orderBy('id', 'desc')
 			->get();
 
@@ -62,9 +63,9 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 	 *
 	 * @return 	mixed
 	 */
-	public function getLatest()
+	public function getRecent()
 	{
-		$thread = $this->$thread
+		$thread = $this->thread
 			->orderBy('id', 'desc')
 			->get();
 
