@@ -2,7 +2,7 @@
 
 class Hit extends Eloquent {
 	
-		/**
+	/**
 	 * Table used by the model
 	 *
 	 * @access 	protected
