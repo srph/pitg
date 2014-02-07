@@ -33,6 +33,9 @@ class ThreadController extends BaseController {
 	{
 		$this->thread = $thread;
 		$this->user = $user;
+
+		$this->beforeFilter('auth', array('only' => array('create')));
+		$this->beforeFilter('csrf', array('only' => array('store')));
 	}
 
 	/**
@@ -52,7 +55,8 @@ class ThreadController extends BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('thread.create')
+			->with('user', $this->user);
 	}
 
 	/**
@@ -62,7 +66,24 @@ class ThreadController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		// [] Validate
+		$thread_created = $this->thread->create(array(
+			'title'		=>	Input::get('title'),
+			'body'		=>	Input::get('body')
+		));
+
+		if($thread_created) {
+			$id = $this->thread
+				->getLast()
+				->id;
+				
+			return Redirect::to('thread/' . $id);
+		}
+
+		return Redirect::to('thread/create')
+			->withInput();
+
+		// [] Create tags
 	}
 
 	/**

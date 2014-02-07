@@ -1,6 +1,29 @@
 <?php
 
+use PITG\Repository\User\UserRepositoryInterface;
+
 class AuthenticationController extends BaseController {
+
+	/**
+	 * Eloquent model
+	 *
+	 * @var Illuminate\Database\Eloquent\Model
+	 */
+	protected $user;
+
+	/**
+	 * Initialize controller configurations,
+	 * apply filter, and load database repositories
+	 *
+	 * @return 	void
+	 */
+	public function __construct(UserRepositoryInterface $user)
+	{
+		$this->user = $user;
+		$this->beforeFilter('guest', array('only' => array('postLogin')));
+		$this->beforeFilter('csrf', array('only' => array('postLogin')));
+		$this->beforeFilter('auth', array('only' => array('getLogout')));
+	}
 
 	/**
 	 * Authenticate the user
@@ -34,7 +57,7 @@ class AuthenticationController extends BaseController {
 		}
 
 		Session::flash('success', 'You have been logged in!');
-		return Redirect::route('home');
+		return Redirect::intended('/');
 	}
 
 	/**
@@ -43,11 +66,9 @@ class AuthenticationController extends BaseController {
 	 * @return 	Response
 	 */
 	public function getLogout()
-	{
-		if(Sentry::check()) {
-			Sentry::logout();
-			Session::flash('success', 'You have been logged out');
-		}
+	{		
+		$this->user->logout();
+		Session::flash('success', 'You have been logged out');
 		
 		return Redirect::route('home');
 	}
