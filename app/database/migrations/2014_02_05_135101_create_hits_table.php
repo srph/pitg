@@ -12,7 +12,8 @@ class CreateHitsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('hits', function($table) {
+		Schema::create('hits', function($table)
+		{
 			$table->increments('id');
 			$table->binary('ip_address');
 			$table->integer('thread_id');

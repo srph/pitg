@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddHitsToThreadsTable extends Migration {
+class CreateVotesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,13 @@ class AddHitsToThreadsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('threads', function($table)
+		Schema::create('votes', function($table)
 		{
-			$table->integer('hits')->default(0);
+			$table->increments('id');
+			$table->integer('thread_id');
+			$table->integer('user_id');
+			$table->tinyInteger('value');
+			$table->timestamps();
 		});
 	}
 
@@ -25,9 +29,7 @@ class AddHitsToThreadsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('threads', function($table) {
-			$table->dropColumn('hits');
-		});
+		Schema::drop('votes');
 	}
 
 }
