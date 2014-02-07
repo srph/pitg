@@ -39,7 +39,7 @@
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					@if(Sentry::check())
+					@if($user->check())
 						{{-- User Settings --}}
 						<li>
 							<a
@@ -102,7 +102,7 @@
 	{{ HTML::script('js/jquery-1.10.2.min.js') }}
 	{{ HTML::script('js/bootstrap.min.js') }}
 	{{-- Modals --}}
-	@if(!Sentry::check()) @include('authentication.modals') @endif
+	@if(!$user->check()) @include('authentication.modals') @endif
 	{{-- Custom Scripts --}}
 	@yield('scripts')
 </body>

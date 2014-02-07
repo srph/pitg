@@ -1,6 +1,7 @@
 <?php
 
 use PITG\Repository\Thread\ThreadRepositoryInterface;
+use PITG\Repository\User\UserRepositoryInterface;
 
 class HomeController extends BaseController {
 
@@ -25,6 +26,13 @@ class HomeController extends BaseController {
 	protected $thread;
 
 	/**
+	 * User repository
+	 *
+	 * @var \PITG\Repository\User\UserRepositoryInterface
+	 */
+	protected $user;
+
+	/**
 	 * Initialize configurations, inject repositories,
 	 * and filter controllers functions
 	 *
@@ -32,9 +40,12 @@ class HomeController extends BaseController {
 	 * @param 	ThreadEloquentRepository 	
 	 * @return 	void
 	 */
-	public function __construct(ThreadRepositoryInterface $thread)
+	public function __construct(
+		ThreadRepositoryInterface $thread,
+		UserRepositoryInterface $user)
 	{
 		$this->thread = $thread;
+		$this->user = $user;
 	}
 
 	/**
@@ -47,7 +58,8 @@ class HomeController extends BaseController {
 	{
 		return View::make('index')
 			->with('hot', $this->thread->getHot())
-			->with('recent', $this->thread->getRecent());
+			->with('recent', $this->thread->getRecent())
+			->With('user', $this->user);
 	}
 
 }
