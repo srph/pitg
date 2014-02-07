@@ -58,6 +58,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
 	 * Checks if the user owns the given variable
 	 * by comparing their id
 	 *
+	 * @param 	mixed 		$var
 	 * @return 	boolean
 	 */
 	public function owns($var)
