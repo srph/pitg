@@ -104,4 +104,18 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 		return false;
 	}
 
+	/**
+	 * Get the last stored record
+	 *
+	 * @return 	mixed
+	 */
+	public function getLast()
+	{
+		$thread = $this->thread
+			->orderBy('id', 'desc')
+			->first();
+
+		return $thread;
+	}
+
 }

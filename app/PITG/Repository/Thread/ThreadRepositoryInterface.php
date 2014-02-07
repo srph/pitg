@@ -33,4 +33,11 @@ interface ThreadRepositoryInterface {
 	 * @return 	mixed
 	 */
 	public function getRecent();
+
+	/**
+	 * Get the last stored record
+	 *
+	 * @return 	mixed
+	 */
+	public function getLast();
 }

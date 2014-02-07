@@ -14,4 +14,11 @@ interface UserRepositoryInterface {
 	 * @return 	mixed
 	 */
 	public function getUser();
+
+	/**
+	 * Logout the user logged in
+	 *
+	 * @return 	void
+	 */
+	public function logout();
 }

@@ -43,4 +43,14 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
 	{
 		return Sentry::getUser();
 	}
+
+	/**
+	 * Logout the user logged in
+	 *
+	 * @return 	void
+	 */
+	public function logout()
+	{
+		Sentry::logout();
+	}
 }
