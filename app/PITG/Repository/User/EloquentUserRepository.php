@@ -53,4 +53,18 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
 	{
 		Sentry::logout();
 	}
+
+	/**
+	 * Checks if the user owns the given variable
+	 * by comparing their id
+	 *
+	 * @return 	boolean
+	 */
+	public function owns($var)
+	{
+		$user_id = $this->getUser()->id;
+		return ($user_id == $var->user_id)
+			? true
+			: false;
+	}
 }

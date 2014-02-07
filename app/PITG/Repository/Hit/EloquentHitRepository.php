@@ -3,6 +3,7 @@
 use DateTime;
 use PITG\Repository\EloquentBaseRepository;
 use PITG\Repository\Hit\HitRepositoryInterface;
+use PITG\Repository\User\UserRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class EloquentHitRepository extends EloquentBaseRepository implements HitRepositoryInterface {
@@ -20,10 +21,13 @@ class EloquentHitRepository extends EloquentBaseRepository implements HitReposit
 	 *
 	 * @return 	void
 	 */
-	public function __construct(Model $hit)
+	public function __construct(
+		Model $hit,
+		UserRepositoryInterface $user)
 	{
 		parent::__construct($hit);
 		$this->hit = $hit;
+		$this->user = $user;
 	}
 
 	/**
@@ -37,6 +41,9 @@ class EloquentHitRepository extends EloquentBaseRepository implements HitReposit
 	public function validate($thread = null, $client = null, $user_id = null)
 	{
 		if(!empty($client) && !empty($user_id)) {
+			if($this->user->owns($thread)) {
+				return false;
+			}
 			// Grab the latest log from the client ip
 			$client = @inet_pton($client);
 			$hit = $this->model
