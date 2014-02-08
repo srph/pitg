@@ -51,6 +51,7 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 	{
 		// Add the frequency / number of posts too..
 		$thread = $this->thread
+			->where('updated_at', '>', strtotime('-1 week', strtotime(date('Y-m-d H:i:s'))))
 			->orderBy('hits', 'desc')
 			->orderBy('id', 'desc')
 			->get();
