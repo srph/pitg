@@ -26,7 +26,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"> PITG </a>
+				<a class="navbar-brand" href="{{ URL::route('home') }}"> PITG </a>
 			</div>
 			{{-- Links --}}
 			<div class="collapse navbar-collapse" id="main-navigation">
