@@ -41,11 +41,11 @@ class ThreadController extends BaseController {
 	/**
 	 * Show a listing of the resource
 	 *
-	 * @return 	Response
+	 * @return 	Redirect
 	 */
 	public function index()
 	{
-		//
+		return Redirect::to('/');
 	}
 
 	/**
@@ -75,20 +75,15 @@ class ThreadController extends BaseController {
 		));
 
 		if($thread_created) {
-			$id = $this->thread
-				->getLast()
-				->id;
-
-			// TODO: tags
+			$thread = Thread::find($this->thread->getLast()->id);
+			
 			$tags = explode(',', Input::get('tags'));
-			// Trim tags after exploding
-			// (i.e.: "tag1, tag2, tag3")
 
 			foreach($tags as $tag) {
 				$thread->tags()->attach(1);
 			}
 
-			return Redirect::to('thread/' . $id);
+			return Redirect::to('thread/' . $thread);
 		}
 
 		return Redirect::to('thread/create')
