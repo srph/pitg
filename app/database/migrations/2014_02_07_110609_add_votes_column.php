@@ -14,7 +14,7 @@ class AddVotesColumn extends Migration {
 	{
 		Schema::table('threads', function($table)
 		{
-			$table->addColumn('votes')->default(0);
+			$table->bigInteger('votes')->default(0);
 		});
 	}
 
