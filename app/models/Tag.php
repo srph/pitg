@@ -9,7 +9,7 @@ class Tag extends Eloquent {
 	 */
 	function threads()
 	{
-		return $this->belongsToMany('Tag');
+		return $this->belongsToMany('Thread');
 	}
 
 }
