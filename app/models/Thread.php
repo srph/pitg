@@ -29,6 +29,16 @@ class Thread extends Eloquent {
 	public $timestamps = true;
 
 	/**
+	 * Define a belongsTo relationship with the Tag model
+	 *
+	 * @return  mixed
+	 */
+	public function tags()
+	{
+		return $this->belongsToMany('Tag');
+	}
+
+	/**
 	 * Define a belongsTo relationship with the User model
 	 *
 	 * @return 	mixed
