@@ -31,3 +31,9 @@ Route::resource('thread', 'ThreadController');
  * Auth controller
  */
 Route::controller('auth', 'AuthenticationController');
+
+/**
+ * @link /logout
+ * Fancy link to logout
+ */
+Route::get('logout', array('as' => 'logout', 'uses' => 'AuthenticationController@getLogout'));

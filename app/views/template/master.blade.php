@@ -69,7 +69,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="{{ URL::to('auth/logout') }}">
+									<a href="{{ URL::route('logout') }}">
 										<span class="glyphicon glyphicon-remove"></span>
 										Logout
 									</a>
