@@ -67,23 +67,29 @@ class ThreadController extends BaseController {
 	public function store()
 	{
 		// [] Validate
-		$thread_created = $this->thread->create(array(
-			'title'		=>	Input::get('title'),
-			'body'		=>	Input::get('body')
-		));
 
-		if($thread_created) {
+		$thread = new Thread;
+		$thread->title 		= Input::get('title');
+		$thread->body 		= Input::get('body');
+		$thread->user_id 	= Sentry::getUser()->id;
+
+		if($thread->save()) {
 			$id = $this->thread
 				->getLast()
 				->id;
-				
+
+			// TODO: tags
+			$tags = explode(',', Input::get('tags'));
+
+			foreach($tags as $tag) {
+				$thread->tags()->attach(1);
+			}
+
 			return Redirect::to('thread/' . $id);
 		}
 
 		return Redirect::to('thread/create')
 			->withInput();
-
-		// [] Create tags
 	}
 
 	/**
