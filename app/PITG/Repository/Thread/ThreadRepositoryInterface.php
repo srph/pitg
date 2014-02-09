@@ -40,4 +40,12 @@ interface ThreadRepositoryInterface {
 	 * @return 	mixed
 	 */
 	public function getLast();
+
+	/**
+	 * Store the newly submitted thread
+	 *
+	 * @param 	array 		$data
+	 * @return 	boolean
+	 */
+	public function post($data);
 }

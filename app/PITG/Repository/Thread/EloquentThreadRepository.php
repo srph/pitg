@@ -36,9 +36,10 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 	public function byId($id)
 	{
 		$thread = $this->model
-			->where('id', '=', $id);
+			->where('id', '=', $id)
+			->first();
 
-		return $thread->first();
+		return $thread;
 	}
 
 	/**
@@ -83,7 +84,6 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 	 */
 	public function incrementHits($thread, $client, $user_id)
 	{
-		$thread = $this->byId($thread);
 		$thread_id = $thread->id;
 
 		$hit = $this->hit;
@@ -117,6 +117,31 @@ class EloquentThreadRepository extends EloquentBaseRepository implements ThreadR
 			->first();
 
 		return $thread;
+	}
+
+	/**
+	 * Store the newly submitted thread
+	 *
+	 * @param 	array 		$data
+	 * @return 	boolean
+	 */
+	public function post($data)
+	{
+		if(!empty($data)) {
+
+			if($this->thread->create($data)) {
+				$thread = $this->byId($this->getLast()->id);			
+				$tags = explode(',', $data['tags']);
+
+				foreach($tags as $tag) {
+					$thread->tags()->attach(1);
+				}
+
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }

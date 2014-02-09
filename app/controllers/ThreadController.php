@@ -67,25 +67,20 @@ class ThreadController extends BaseController {
 	public function store()
 	{
 		// [] Validate
+		$data = Input::all();
+		$data['user_id'] = $this->user
+			->getUser()
+			->id;
 
-		$thread_created = $this->thread->create(array(
-			'title'		=>	Input::get('title'),
-			'body'		=>	Input::get('body'),
-			'user_id'	=>	$this->user->getUser()->id
-		));
+		if($this->thread->post($data)) {
+			$thread_id = $this->thread
+				->getLast()
+				->id;
 
-		if($thread_created) {
-			$thread = Thread::find($this->thread->getLast()->id);
-			
-			$tags = explode(',', Input::get('tags'));
-
-			foreach($tags as $tag) {
-				$thread->tags()->attach(1);
-			}
-
-			return Redirect::to('thread/' . $thread);
+			Session::flash('success', 'You have successfully posted the thread');
+			return Redirect::to('thread/' . $thread_id);
 		}
-
+		
 		return Redirect::to('thread/create')
 			->withInput();
 	}
@@ -111,7 +106,7 @@ class ThreadController extends BaseController {
 		if($user->check()) {
 			$client = '\'' . Request::getClientIp() . '\'';
 			$user = $user->getUser();
-			$this->thread->incrementHits($id, $client, $user->id);
+			$this->thread->incrementHits($thread, $client, $user->id);
 		}
 
 		return View::make('thread.show')
