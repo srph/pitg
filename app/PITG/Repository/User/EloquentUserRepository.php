@@ -63,7 +63,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
 	 */
 	public function owns($var)
 	{
-		$user_id = $this->getUser()->id;
+		$user_id = $this->loggedIn()->id;
 		return ($user_id == $var->user_id)
 			? true
 			: false;
