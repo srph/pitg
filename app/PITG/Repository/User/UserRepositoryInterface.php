@@ -14,7 +14,7 @@ interface UserRepositoryInterface {
 	 *
 	 * @return 	mixed
 	 */
-	public function getUser();
+	public function loggedIn();
 
 	/**
 	 * Logout the user logged in

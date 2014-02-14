@@ -39,7 +39,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
 	 *
 	 * @return 	mixed
 	 */
-	public function getUser()
+	public function loggedIn()
 	{
 		return Sentry::getUser();
 	}
