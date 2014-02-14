@@ -33,6 +33,11 @@ Route::resource('thread', 'ThreadController');
 Route::controller('auth', 'AuthenticationController');
 
 /**
+ * @link /user/settings
+ * Account settings
+ */
+Route::get('user/settings', 'SettingsController@getAccount');
+/**
  * @link /logout
  * Fancy link to logout
  */
