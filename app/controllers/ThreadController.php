@@ -69,7 +69,7 @@ class ThreadController extends BaseController {
 		// [] Validate
 		$data = Input::all();
 		$data['user_id'] = $this->user
-			->getUser()
+			->loggedIn()
 			->id;
 
 		if($this->thread->post($data)) {
