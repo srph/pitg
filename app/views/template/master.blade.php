@@ -53,14 +53,14 @@
 							{{-- Settings Dropdown --}}
 							<ul class="dropdown-menu">
 								<li>
-									<a href="{{ URL::to('user/settings') }}">
+									<a href="{{ URL::route('user_settings') }}">
 										<span class="glyphicon glyphicon-lock"></span>
 										Account Settings
 									</a>
 								</li>
 
 								<li>
-									<a href="#">
+									<a href="{{ URL::route('profile_settings') }}">
 										<span class="glyphicon glyphicon-user"></span>
 										Profile Settings
 									</a>
