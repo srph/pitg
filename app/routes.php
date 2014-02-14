@@ -36,7 +36,7 @@ Route::controller('auth', 'AuthenticationController');
  * @link /user/settings
  * Account settings
  */
-Route::get('user/settings', array(
+Route::get('user/settings/', array(
 	'as' 	=>	'user_settings',
 	'uses'	=>	'UserController@getAccountSettings'
 ));
@@ -48,10 +48,13 @@ Route::get('user/settings', array(
 Route::get('user/settings/profile', array(
 	'as'	=>	'profile_settings',
 	'uses' 	=>	'UserController@getProfileSettings'
-));
+)); 
 
 /**
  * @link /logout
  * Fancy link to logout
  */
-Route::get('logout', array('as' => 'logout', 'uses' => 'AuthenticationController@getLogout'));
+Route::get('logout', array(
+	'as'	=>	'logout',
+	'uses'	=>	'AuthenticationController@getLogout'
+));
