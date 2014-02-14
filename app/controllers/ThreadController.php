@@ -105,7 +105,7 @@ class ThreadController extends BaseController {
 		// Grab the client' ip Increment hits
 		if($user->check()) {
 			$client = '\'' . Request::getClientIp() . '\'';
-			$user = $user->getUser();
+			$user = $user->loggedIn();
 			$this->thread->incrementHits($thread, $client, $user->id);
 		}
 
