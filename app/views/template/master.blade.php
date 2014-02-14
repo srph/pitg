@@ -53,7 +53,7 @@
 							{{-- Settings Dropdown --}}
 							<ul class="dropdown-menu">
 								<li>
-									<a href="#">
+									<a href="{{ URL::to('user/settings') }}">
 										<span class="glyphicon glyphicon-lock"></span>
 										Account Settings
 									</a>
